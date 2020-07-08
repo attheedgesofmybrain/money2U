@@ -4,7 +4,36 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    redirectTo: 'signin',
+    pathMatch: 'full'
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'signin',
+    loadChildren: () => import('./pages/authentication/signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./pages/authentication/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'plus',
+    loadChildren: () => import('./pages/tabs/feed/plus/plus.module').then(m => m.PlusPageModule)
+  },
+  {
+    path: 'minus',
+    loadChildren: () => import('./pages/tabs/feed/minus/minus.module').then(m => m.MinusPageModule)
+  },
+  {
+    path: 'edit-plus/:id',
+    loadChildren: () => import('./pages/tabs/feed/edit-plus/edit-plus.module').then( m => m.EditPlusPageModule)
+  },
+  {
+    path: 'edit-minus/:id',
+    loadChildren: () => import('./pages/tabs/feed/edit-minus/edit-minus.module').then( m => m.EditMinusPageModule)
   }
 ];
 @NgModule({

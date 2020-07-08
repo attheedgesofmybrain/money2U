@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Saída</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Tipo</ion-label>
+    <ion-input type="text" [(ngModel)]="minusTransition.type" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descrição</ion-label>
+    <ion-input type="text" [(ngModel)]="minusTransition.desc" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Data</ion-label>
+    <ion-datetime [(ngModel)]="minusTransition.date" min="2020" max="2030-12-31" display-timezone="utc" pickerFormat="DD/MM/YYYY" displayFormat="DD/MM/YYYY"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Valor</ion-label>
+    <ion-input type="number" [(ngModel)]="minusTransition.amount" required></ion-input>
+  </ion-item>
+
+  <ion-button class="ion-padding" color="primary" expand="full" (click)="create(minusTransition)">Criar</ion-button>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/tabs/feed']" color="primary">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

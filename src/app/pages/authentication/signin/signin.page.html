@@ -1,0 +1,14 @@
+<ion-content>
+  <form>
+    <h1>Login</h1>
+    <div class="social-container">
+      <a routerLink="/login-register" class="social"><i class="fas fa-arrow-left"></i></a>
+      <a (click)="loginGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
+    </div>
+    <span>ou sua conta</span>
+    <input type="email" name="userAccount.email" [(ngModel)]="user.email" placeholder="Email"/>
+    <input type="password" name="userAccount.pass" [(ngModel)]="user.pass" placeholder="Senha"/>
+      <a href="#">Esqueceu a senha?</a>
+    <button (click)="signin(user)">Entrar</button>
+  </form>
+</ion-content>

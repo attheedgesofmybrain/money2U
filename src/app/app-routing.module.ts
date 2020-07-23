@@ -35,6 +35,15 @@ const routes: Routes = [
     path: 'edit-minus/:id',
     loadChildren: () => import('./pages/tabs/feed/edit-minus/edit-minus.module').then( m => m.EditMinusPageModule)
   }
+  ,
+  {
+    path: 'transactions',
+    loadChildren: () => import('./pages/tabs/feed/transactions/transactions.module').then( m => m.TransactionsPageModule)
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./pages/tabs/feed/test/test.module').then( m => m.TestPageModule)
+  }
 ];
 @NgModule({
   imports: [

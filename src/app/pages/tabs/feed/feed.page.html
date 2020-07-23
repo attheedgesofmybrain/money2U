@@ -1,15 +1,41 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title class="ion-text-center">...</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
-  <ion-list lines="none" class="plus">
-    <h1 class="ion-text-center">Transições Positivas</h1>
+  <div class="title ion-text-center">
+    <span class="first">MONEY</span><span class="secundary">2U</span>
+  </div>
+  
 
-    <ion-item-sliding *ngFor="let plusTransition of plusTransitions">
+  <ion-list lines="none" class="zero" routerLink="/transactions">
+    <h1 class="ion-text-center">Saldos</h1>
+
+    <ion-item>
+      <ion-text slot="start">
+        Positivos
+      </ion-text>
+      <ion-text color="success" slot="end">
+        R$2000,00
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-text slot="start">
+        Negativos
+      </ion-text>
+      <ion-text color="danger" slot="end">
+        R$500,00
+      </ion-text>
+    </ion-item>
+    <div class="traço"></div>
+    <ion-item>
+      <ion-text slot="start">
+        Total
+      </ion-text>
+      <ion-text color="tertiary" slot="end">
+        R$1500,00
+      </ion-text>
+    </ion-item>
+
+    <!-- <ion-item-sliding *ngFor="let plusTransition of plusTransitions">
       <ion-item class="no-padding">
         <ion-label>
           <h1>{{plusTransition.type}}</h1>
@@ -31,10 +57,10 @@
         </ion-item-option>
       </ion-item-options>
 
-    </ion-item-sliding>
+    </ion-item-sliding>-->
   </ion-list>
 
-  <ion-list lines="none" class="minus">
+ <!--<ion-list lines="none" class="minus">
     <h1 class="ion-text-center">Transições Negativas</h1>
     <ion-item-sliding *ngFor="let minusTransition of minusTransitions">
       <ion-item class="no-padding">
@@ -59,7 +85,7 @@
       </ion-item-options>
 
     </ion-item-sliding>
-  </ion-list>
+  </ion-list>--> 
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button size="small" color="primary">

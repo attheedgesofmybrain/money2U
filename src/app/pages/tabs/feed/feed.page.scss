@@ -1,18 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 ion-content {
+    font-family: 'Montserrat', sans-serif;
     --background: #D3D3D3 ;
 }
-.plus {
-    margin: 5px 8px 5px;
+
+ion-list:focus {
+    outline: none;
+}
+
+.title {
+    margin-top: 25px;
+    font-weight: 900;
+
+    .first {
+        font-size: 25px;
+    }
+    .secundary {
+        font-size: 30px;
+    }
+}
+
+.zero {
+    margin: 10px 5px;
     border: 1px solid #fff;
-    border-radius: 8%;
+    border-radius: 5%;
 
     h1 {
-        margin-bottom: 15px;
+        margin-bottom: 8px;
     }
-    ion-item-sliding {
-        margin: 1px 
-    }
+
     ion-item {
-        --background: #E8E8E8;
+        --padding-top: 0px;
+        --padding-bottom: 0px;
+    }
+
+    .traço {
+        border: 1px solid #d7d8da;
     }
 }

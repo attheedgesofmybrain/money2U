@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { environment } from 'src/environments/environment'
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: './feed.page.html',
-  styleUrls: ['./feed.page.scss'],
+  selector: 'app-transactions',
+  templateUrl: './transactions.page.html',
+  styleUrls: ['./transactions.page.scss'],
 })
-export class FeedPage implements OnInit {
+export class TransactionsPage implements OnInit {
 
   plusTransitions: any
   minusTransitions: any
 
-  
+      
 
   constructor(
     private toastCtrl: ToastController, 
     private loadingCtrl: LoadingController,
     private firestore: AngularFirestore
   ) 
-  {
-    console.log(this.listaressaporra())
+  { 
     
   }
 
@@ -31,10 +29,6 @@ export class FeedPage implements OnInit {
   ionViewWillEnter() {
     this.getPlusTransitions()
     this.getMinusTransitions()
-  }
-
-  listaressaporra() {
-    this.firestore.firestore.collection('plusTransitions').get()
   }
 
   async getPlusTransitions() {

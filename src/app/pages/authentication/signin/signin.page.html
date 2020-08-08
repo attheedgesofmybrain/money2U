@@ -2,8 +2,8 @@
   <form>
     <h1>Login</h1>
     <div class="social-container">
-      <a routerLink="/login-register" class="social"><i class="fas fa-arrow-left"></i></a>
-      <a (click)="loginGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
+      <a routerLink="/signup" class="social"><ion-icon color="tertiary" name="arrow-back-outline"></ion-icon></a>
+      <a (click)="loginGoogle()" class="social"><ion-icon color="tertiary" name="logo-google"></ion-icon></a>
     </div>
     <span>ou sua conta</span>
     <input type="email" name="userAccount.email" [(ngModel)]="user.email" placeholder="Email"/>

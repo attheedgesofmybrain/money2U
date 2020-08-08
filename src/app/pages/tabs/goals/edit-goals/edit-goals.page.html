@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/tabs/goals">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title color="light" class="ion-text-center">Editar Objetivo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="goal.name" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Tipo</ion-label>
+    <ion-input type="text" [(ngModel)]="goal.type" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descrição</ion-label>
+    <ion-input type="text" [(ngModel)]="goal.desc" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Prazo</ion-label>
+    <ion-datetime [(ngModel)]="goal.prompt" min="2020" max="2030-12-31" display-timezone="utc" pickerFormat="DD/MM/YYYY" displayFormat="DD/MM/YYYY"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Valor Estimado</ion-label>
+    <ion-input type="number" [(ngModel)]="goal.estimated_value" required></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">Aporte Mensal</ion-label>
+    <ion-input type="number" [(ngModel)]="goal.monthly_contribution" required></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">Total ano</ion-label>
+    <ion-input type="number" [(ngModel)]="goal.total_year" required></ion-input>
+  </ion-item>
+
+
+
+  <ion-button class="ion-padding" color="tertiary" expand="full" (click)="update(goal)">Editar</ion-button>
+
+
+</ion-content>

@@ -1,9 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>goals</ion-title>
+  <ion-toolbar color="tertiary" >
+    <ion-title class="ion-text-center">Objetivos e Metas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-infinite-scroll>
+
+    <ion-item-sliding *ngFor="let goal of goals">
+      
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{goal.name}}</mat-panel-title>
+          <mat-panel-description>Ver mais</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p class="p"><span class="rum">Tipo: </span>{{goal.type}}</p>
+        <p><span class="rum">Descrição: </span>{{goal.desc}}</p>
+        <p><span class="rum">Prazo: </span>{{goal.prompt}}</p>
+        <p><span class="rum">Valor estimado: </span>{{goal.estimated_value}}</p>
+        <p><span class="rum">Aporte Mensal: </span>{{goal.monthly_contribution}}</p>
+        <p><span class="rum">Total Atual: </span>{{goal.total_year}}</p>
+
+        <ion-button [routerLink]="['/edit-goal/', goal.id]" expand="round" size="small" color="secondary">Editar
+          <ion-icon slot="start" name="create-outline"></ion-icon>
+        </ion-button>
+      
+        <ion-button (click)="deletarGoal(goal.id)" expand="round" size="small" color="danger">Excluir
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+        </ion-button>
+      </mat-expansion-panel> 
+
+      <ion-item color="tertiary">
+        <ion-label>Progresso: </ion-label>
+      </ion-item>
+    
+      <mat-progress-bar mode="determinate" value="{{goal.estimated_value/goal.monthly_contribution}}"></mat-progress-bar>
+
+    </ion-item-sliding>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button size="small" [routerLink]="['/add-goals']" color="tertiary">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>  
+  </ion-infinite-scroll>
+
 </ion-content>
+
+

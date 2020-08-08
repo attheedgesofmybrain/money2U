@@ -1,73 +1,58 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="end">
       <ion-button routerLink="/tabs/feed">
         <ion-icon slot="icon-only" name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     
-    <ion-title color="dark" class="ion-text-center">Transações</ion-title>
+    <ion-title color="light" class="ion-text-center">Transações</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-infinite-scroll>
 
-  <ion-item-sliding *ngFor="let plusTransition of plusTransitions">
-    <ion-item class="no-padding">
-      <ion-label>
-        <ion-item lines="none">
-          <ion-text slot="start">
-            <h1><span class="plus">+</span>&nbsp;{{plusTransition.type}}</h1>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{plusTransition.date | date:"dd/MM/yyyy"}}</p>
-          </ion-text> 
-          <ion-text slot="end">
-            <p>R${{plusTransition.amount}},00</p>
-          </ion-text>
-        </ion-item>
-      </ion-label>
-    </ion-item>
+  <br>
 
-    <ion-item-options side="start">
-      <ion-item-option [routerLink]="['/edit-plus/', plusTransition.id]"> 
-        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-      </ion-item-option>
-    </ion-item-options>
+   <ion-item-sliding *ngFor="let plusTransition of plusTransitions">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title><span class="plus">+</span>&nbsp;{{plusTransition.type}}</mat-panel-title>
+          <mat-panel-description>R${{plusTransition.amount}},00</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p class="p"><span class="rum">Descrição: </span>{{plusTransition.desc}}</p>
+        <p><span class="rum">Data: </span>{{plusTransition.date | date:"dd/MM/yyyy"}}</p>
 
-    <ion-item-options side="end">
-      <ion-item-option color="danger" (click)="deletarPlusTransition(plusTransition.id)">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-item-option>
-    </ion-item-options>
+        <ion-button [routerLink]="['/edit-plus/', plusTransition.id]" expand="round" size="small" color="secondary">Editar
+          <ion-icon slot="start" name="create-outline"></ion-icon>
+        </ion-button>
+      
+        <ion-button (click)="deletarPlusTransition(plusTransition.id)" expand="round" size="small" color="danger">Excluir
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+        </ion-button>
+    </mat-expansion-panel> 
 
-  </ion-item-sliding>
+    </ion-item-sliding>
 
-  <ion-item-sliding *ngFor="let minusTransition of minusTransitions">
-    <ion-item class="no-padding">
-      <ion-label>
-        <ion-item lines="none">
-          <ion-text slot="start">
-            <h1><span class="minus">-</span>&nbsp;{{minusTransition.type}}</h1>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{minusTransition.date | date:"dd/MM/yyyy"}}</p>
-          </ion-text> 
-          <ion-text slot="end">
-            <p>R${{minusTransition.amount}},00</p>
-          </ion-text>
-        </ion-item>
-      </ion-label>
-    </ion-item>
+    <ion-item-sliding *ngFor="let minusTransition of minusTransitions">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title><span class="minus">+</span>&nbsp;{{minusTransition.type}}</mat-panel-title>
+          <mat-panel-description>R${{minusTransition.amount}},00</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p class="p"><span class="rum">Descrição: </span>{{minusTransition.desc}}</p>
+        <p><span class="rum">Data: </span>{{minusTransition.date | date:"dd/MM/yyyy"}}</p>
 
-    <ion-item-options side="start">
-      <ion-item-option [routerLink]="['/edit-minus/', minusTransition.id]"> 
-        <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-      </ion-item-option>
-    </ion-item-options>
+        <ion-button [routerLink]="['/edit-minus/', minusTransition.id]" expand="round" size="small" color="secondary">Editar
+          <ion-icon slot="start" name="create-outline"></ion-icon>
+        </ion-button>
+      
+        <ion-button (click)="deletarMinusTransition(minusTransition.id)" expand="round" size="small" color="danger">Excluir
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+        </ion-button>
+    </mat-expansion-panel> 
 
-    <ion-item-options side="end">
-      <ion-item-option color="danger" (click)="deletarMinusTransition(minusTransition.id)">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
-      </ion-item-option>
-    </ion-item-options>
-
-  </ion-item-sliding>
-
+    </ion-item-sliding>
+</ion-infinite-scroll>
 </ion-content>

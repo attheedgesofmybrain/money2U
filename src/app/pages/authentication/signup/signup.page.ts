@@ -36,7 +36,7 @@ export class SignupPage implements OnInit {
         .then(data => {
           console.log(data)
           // redirect to home page
-          this.navCtrl.navigateRoot('tab1')
+          this.navCtrl.navigateRoot('tabs')
         })     
       } 
       catch(e) {

@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MinusTransition } from 'src/app/models/minusTransition.model';
+import { Goal } from 'src/app/models/goal.model';
 
 @Component({
-  selector: 'app-edit-minus',
-  templateUrl: './edit-minus.page.html',
-  styleUrls: ['./edit-minus.page.scss'],
+  selector: 'app-edit-goals',
+  templateUrl: './edit-goals.page.html',
+  styleUrls: ['./edit-goals.page.scss'],
 })
-export class EditMinusPage implements OnInit {
+export class EditGoalsPage implements OnInit {
 
-  minusTransition = {} as MinusTransition
+  goal = {} as Goal
   id: any
 
   constructor(
@@ -27,27 +27,30 @@ export class EditMinusPage implements OnInit {
 
   ngOnInit() 
   {
-    this.getMinusById(this.id)
+    this.getGoalById(this.id)
   }
 
-  async getMinusById(id: string) {
+  async getGoalById(id: string) {
     // show loader
     let loader = await this.loadingCtrl.create({
       message: "Espere por favor..."
     })
     loader.present() 
 
-    this.firestore.doc('minusTransitions/' + id).valueChanges().subscribe(data => {
-      this.minusTransition.type = data['type']
-      this.minusTransition.desc = data['desc']
-      this.minusTransition.date = data['date']
-      this.minusTransition.amount = data['amount']
+    this.firestore.doc('goals/' + id).valueChanges().subscribe(data => {
+      this.goal.name = data['name']
+      this.goal.type = data['type']
+      this.goal.desc = data['desc']
+      this.goal.prompt = data['prompt']
+      this.goal.estimated_value = data['estimated_value']
+      this.goal.monthly_contribution = data['monthly_contribution']
+      this.goal.total_year = data['total_year']
     })
     // dismiss loader
     loader.dismiss()
   }
 
-  async update(minusTransition: MinusTransition) {
+  async update(goal: Goal) {
     if(this.formValidation()) {
       // show loader
       let loader = await this.loadingCtrl.create({
@@ -56,7 +59,7 @@ export class EditMinusPage implements OnInit {
       loader.present()
 
       try {
-        await this.firestore.doc('minusTransitions/' + this.id).update(minusTransition)
+        await this.firestore.doc('goals/' + this.id).update(goal)
       } 
       catch(e) {
         this.showToast(e)
@@ -64,29 +67,41 @@ export class EditMinusPage implements OnInit {
       // dismiss loader
       (await loader).dismiss()
       // redirect to home page
-      this.navCtrl.navigateRoot('tabs/feed')
+      this.navCtrl.navigateRoot('tabs/goals')
     }
   }
 
-  formValidation() {
-    if(!this.minusTransition.type && !this.minusTransition.desc && !this.minusTransition.date && !this.minusTransition.amount) {
+  formValidation() { 
+    if(!this.goal.name && !this.goal.desc && !this.goal.prompt && !this.goal.type  && !this.goal.estimated_value && !this.goal.monthly_contribution && !this.goal.total_year) {
       this.showToast('Entre com os Dados')
       return false
     }
-    if(!this.minusTransition.type) {
-      this.showToast('Entre com o Tipo')
+    if(!this.goal.name) {
+      this.showToast('Entre com o Nome')
       return false
     }
-    if(!this.minusTransition.desc) {
+    if(!this.goal.desc) {
       this.showToast('Entre com a Descrição')
       return false
     }
-    if(!this.minusTransition.date) {
-      this.showToast('Entre com a Data')
+    if(!this.goal.prompt) {
+      this.showToast('Entre com o Prazo')
       return false
     }
-    if(!this.minusTransition.amount) {
+    if(!this.goal.type) {
+      this.showToast('Entre com o Tipo')
+      return false
+    }
+    if(!this.goal.estimated_value) {
       this.showToast('Entre com o Valor')
+      return false
+    }
+    if(!this.goal.monthly_contribution) {
+      this.showToast('Entre com o Aporte')
+      return false
+    }
+    if(!this.goal.total_year) {
+      this.showToast('Entre com o Total')
       return false
     }
     return true
@@ -98,5 +113,6 @@ export class EditMinusPage implements OnInit {
       duration: 3000
     }).then(toastData => toastData.present())
   }
+
 
 }

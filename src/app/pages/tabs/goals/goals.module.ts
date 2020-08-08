@@ -8,12 +8,17 @@ import { GoalsPageRoutingModule } from './goals-routing.module';
 
 import { GoalsPage } from './goals.page';
 
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GoalsPageRoutingModule
+    GoalsPageRoutingModule,
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   declarations: [GoalsPage]
 })

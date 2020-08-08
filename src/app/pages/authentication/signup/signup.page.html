@@ -2,12 +2,12 @@
   <form>
     <h1>Criar conta</h1>
     <div class="social-container">
-      <a routerLink="/login-register" class="social"><i class="fas fa-arrow-left"></i></a>
-      <a (click)="registerGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
+      <a routerLink="/signin" class="social"><ion-icon color="tertiary" name="arrow-back-outline"></ion-icon></a>
+      <a (click)="registerGoogle()" class="social"><ion-icon color="tertiary" name="logo-google"></ion-icon></a>
     </div>
     <span>ou crie um email próprio para acessar</span>
     <input type="email" name="userAccount.email" [(ngModel)]="user.email" placeholder="Email"/>
     <input type="password" name="userAccount.pass" [(ngModel)]="user.pass" placeholder="Senha"/>
-    <button (click)="signup(user)">Criar</button>
+    <button (click)="register(user)">Criar</button>
   </form>
 </ion-content>

@@ -41,8 +41,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/feed/transactions/transactions.module').then( m => m.TransactionsPageModule)
   },
   {
-    path: 'test',
-    loadChildren: () => import('./pages/tabs/feed/test/test.module').then( m => m.TestPageModule)
+    path: 'add-goals',
+    loadChildren: () => import('./pages/tabs/goals/add-goals/add-goals.module').then( m => m.AddGoalsPageModule)
+  },
+  {
+    path: 'edit-goal/:id',
+    loadChildren: () => import('./pages/tabs/goals/edit-goals/edit-goals.module').then( m => m.EditGoalsPageModule)
   }
 ];
 @NgModule({

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-feed',
@@ -10,10 +9,13 @@ import { environment } from 'src/environments/environment'
 })
 export class FeedPage implements OnInit {
 
+  
   plusTransitions: any
   minusTransitions: any
 
-  
+  totalP: number
+  totalM: number
+  total: number
 
   constructor(
     private toastCtrl: ToastController, 
@@ -21,7 +23,6 @@ export class FeedPage implements OnInit {
     private firestore: AngularFirestore
   ) 
   {
-    console.log(this.listaressaporra())
     
   }
 
@@ -31,11 +32,9 @@ export class FeedPage implements OnInit {
   ionViewWillEnter() {
     this.getPlusTransitions()
     this.getMinusTransitions()
+    
   }
 
-  listaressaporra() {
-    this.firestore.firestore.collection('plusTransitions').get()
-  }
 
   async getPlusTransitions() {
     // show loader
@@ -55,14 +54,26 @@ export class FeedPage implements OnInit {
             amount: e.payload.doc.data()['amount']
           }
         })
+        this.totalP = 0
+        for(
+          var iP=0;
+          iP < this.plusTransitions.length;
+          iP++
+          ) {
+            this.totalP = this.totalP + this.plusTransitions[iP]['amount']
+          }
+        
       })
       // dismiss loader
       loader.dismiss()
-    }
+    } 
     catch(e) {
       this.showToast(e)
     }
   }
+  
+
+  
 
   async getMinusTransitions() {
     // show loader
@@ -82,6 +93,14 @@ export class FeedPage implements OnInit {
             amount: e.payload.doc.data()['amount']
           }
         })
+        this.totalM = 0
+        for(
+          var iM=0;
+          iM < this.minusTransitions.length;
+          iM++
+          ) {
+            this.totalM = this.totalM + this.minusTransitions[iM]['amount']
+          } 
       })
       // dismiss loader
       loader.dismiss()
@@ -91,37 +110,13 @@ export class FeedPage implements OnInit {
     }
   }
 
-  async deletarPlusTransition(id: string) {
-    // show loader
-    let loader = await this.loadingCtrl.create({
-      message: "Espere por favor..."
-    })
-    loader.present()
-
-    await this.firestore.doc('plusTransitions/' + id).delete()
-
-    // dismiss loader
-    loader.dismiss()
-  }
-
-  async deletarMinusTransition(id: string) {
-    // show loader
-    let loader = await this.loadingCtrl.create({
-      message: "Espere por favor..."
-    })
-    loader.present()
-
-    await this.firestore.doc('minusTransitions/' + id).delete()
-
-    // dismiss loader
-    loader.dismiss()
-  }
-
   showToast(message: string) {
     this.toastCtrl.create({
       message: message,
       duration: 3000
     }).then(toastData => toastData.present())
   }
+
+
 
 }

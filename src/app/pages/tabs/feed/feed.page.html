@@ -1,10 +1,13 @@
-<ion-content>
+<ion-content color="light">
 
-  <div class="title ion-text-center">
-    <span class="first">MONEY</span><span class="secundary">2U</span>
-  </div>
+  <ion-toolbar color="tertiary">
+    <div class="title ion-text-center">
+      <span class="first">MONEY</span><span class="secundary">2U</span>
+    </div>
+  </ion-toolbar>
+
+  <br>
   
-
   <ion-list lines="none" class="zero" routerLink="/transactions">
     <h1 class="ion-text-center">Saldos</h1>
 
@@ -12,8 +15,8 @@
       <ion-text slot="start">
         Positivos
       </ion-text>
-      <ion-text color="success" slot="end">
-        R$2000,00
+      <ion-text class="drin" color="success" slot="end">
+        R${{totalP}},00
       </ion-text>
     </ion-item>
 
@@ -21,8 +24,8 @@
       <ion-text slot="start">
         Negativos
       </ion-text>
-      <ion-text color="danger" slot="end">
-        R$500,00
+      <ion-text class="drin" color="danger" slot="end">
+        R${{totalM}},00
       </ion-text>
     </ion-item>
     <div class="traço"></div>
@@ -30,65 +33,14 @@
       <ion-text slot="start">
         Total
       </ion-text>
-      <ion-text color="tertiary" slot="end">
-        R$1500,00
+      <ion-text class="drin" color="tertiary" slot="end">
+        R${{totalP-totalM}},00
       </ion-text>
     </ion-item>
-
-    <!-- <ion-item-sliding *ngFor="let plusTransition of plusTransitions">
-      <ion-item class="no-padding">
-        <ion-label>
-          <h1>{{plusTransition.type}}</h1>
-          <h3>{{plusTransition.desc}}</h3>
-          <p>{{plusTransition.date | date:"dd/MM/yyyy"}}</p>
-          <p>R${{plusTransition.amount}}</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="start">
-        <ion-item-option [routerLink]="['/edit-plus/', plusTransition.id]"> 
-          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deletarPlusTransition(plusTransition.id)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>-->
   </ion-list>
 
- <!--<ion-list lines="none" class="minus">
-    <h1 class="ion-text-center">Transições Negativas</h1>
-    <ion-item-sliding *ngFor="let minusTransition of minusTransitions">
-      <ion-item class="no-padding">
-        <ion-label>
-          <h1>{{minusTransition.type}}</h1>
-          <h3>{{minusTransition.desc}}</h3>
-          <p>{{minusTransition.date | date:"dd/MM/yyyy"}}</p>
-          <p>R${{minusTransition.amount}}</p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="start">
-        <ion-item-option [routerLink]="['/edit-minus/', minusTransition.id]"> 
-          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deletarMinusTransition(minusTransition.id)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
-  </ion-list>--> 
-
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button size="small" color="primary">
+    <ion-fab-button size="small" color="tertiary">
       <ion-icon name="aperture"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">

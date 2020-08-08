@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: GoalsPage
+  },
+  {
+    path: 'add-goals',
+    loadChildren: () => import('./add-goals/add-goals.module').then( m => m.AddGoalsPageModule)
+  },
+  {
+    path: 'edit-goals',
+    loadChildren: () => import('./edit-goals/edit-goals.module').then( m => m.EditGoalsPageModule)
   }
 ];
 
